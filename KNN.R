@@ -1,7 +1,6 @@
 #install.packages("readr")
 
 #Importation des packages
-library(corrplot)
 library(readr)
 library(mlbench)
 library(class)  # pour knn
