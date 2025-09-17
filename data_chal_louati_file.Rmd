@@ -1,0 +1,27 @@
+---
+title: "data_chal_louati_file"
+output: html_notebook
+---
+
+# DATA CHAL LOUATI file's
+
+```{r}
+# Charger ex
+ex <- read.csv("dataset/ex_soumission.csv")
+
+head(ex)
+```
+
+```{r}
+# Charger test
+test <- read.csv("dataset/farms_test.csv")
+
+head(test)
+```
+
+```{r}
+# Charger train
+train <- read.csv("dataset/farms_train.csv")
+
+head(train)
+```
