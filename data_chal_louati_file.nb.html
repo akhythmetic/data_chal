@@ -1754,6 +1754,9 @@ display: none;
 <!-- rnb-text-begin -->
 <div id="data-chal-louati-files" class="section level1">
 <h1>DATA CHAL LOUATI file’s</h1>
+<div id="affichage-des-dataframes-et-prise-de-connaissance-sur-les-données" class="section level2">
+<h2>Affichage des dataframes et prise de connaissance sur les
+données</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1zb3VyY2UtYmVnaW4gZXlKa1lYUmhJam9pWUdCZ2NseHVJeUJEYUdGeVoyVnlJR1Y0WEc1bGVDQThMU0J5WldGa0xtTnpkaWhjSW1SaGRHRnpaWFF2WlhoZmMyOTFiV2x6YzJsdmJpNWpjM1pjSWlsY2JseHVhR1ZoWkNobGVDbGNibUJnWUNKOSAtLT5cblxuYGBgclxuIyBDaGFyZ2VyIGV4XG5leCA8LSByZWFkLmNzdihcImRhdGFzZXQvZXhfc291bWlzc2lvbi5jc3ZcIilcblxuaGVhZChleClcbmBgYFxuXG48IS0tIHJuYi1zb3VyY2UtZW5kIC0tPlxuIn0= -->
@@ -1816,9 +1819,49 @@ head(train)</code></pre>
 <!-- rnb-frame-end -->
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1zb3VyY2UtYmVnaW4gZXlKa1lYUmhJam9pWUdCZ2NseHVibU52YkNoMGNtRnBiaWxjYmx4dVlHQmdJbjA9IC0tPlxuXG5gYGByXG5uY29sKHRyYWluKVxuXG5gYGBcblxuPCEtLSBybmItc291cmNlLWVuZCAtLT5cbiJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmNvbCh0cmFpbilcblxuYGBgIn0= -->
+<pre class="r"><code>ncol(train)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDdcbiJ9 -->
+<pre><code>[1] 7</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1zb3VyY2UtYmVnaW4gZXlKa1lYUmhJam9pWUdCZ2NseHVjM1Z0S0hOaGNIQnNlU2gwY21GcGJpd2dhWE11Ym5WdFpYSnBZeWtwWEc1Y2JtQmdZQ0o5IC0tPlxuXG5gYGByXG5zdW0oc2FwcGx5KHRyYWluLCBpcy5udW1lcmljKSlcblxuYGBgXG5cbjwhLS0gcm5iLXNvdXJjZS1lbmQgLS0+XG4ifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtKHNhcHBseSh0cmFpbiwgaXMubnVtZXJpYykpXG5cbmBgYCJ9 -->
+<pre class="r"><code>sum(sapply(train, is.numeric))
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDdcbiJ9 -->
+<pre><code>[1] 7</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="instalation-des-package-pour-le-svm-et-data-visu" class="section level2">
+<h2>Instalation des package pour le SVM et data visu</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1zb3VyY2UtYmVnaW4gZXlKa1lYUmhJam9pWUdCZ2NseHViR2xpY21GeWVTaG5aM0JzYjNReUtWeHViR2xpY21GeWVTaGxNVEEzTVNsY2JtQmdZQ0o5IC0tPlxuXG5gYGByXG5saWJyYXJ5KGdncGxvdDIpXG5saWJyYXJ5KGUxMDcxKVxuYGBgXG5cbjwhLS0gcm5iLXNvdXJjZS1lbmQgLS0+XG4ifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShlMTA3MSlcbmBgYCJ9 -->
+<pre class="r"><code>library(ggplot2)
+library(e1071)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+</div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogImRhdGFfY2hhbF9sb3VhdGlfZmlsZSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCiMgREFUQSBDSEFMIExPVUFUSSBmaWxlJ3MNCg0KYGBge3J9DQojIENoYXJnZXIgZXgNCmV4IDwtIHJlYWQuY3N2KCJkYXRhc2V0L2V4X3NvdW1pc3Npb24uY3N2IikNCg0KaGVhZChleCkNCmBgYA0KDQpgYGB7cn0NCiMgQ2hhcmdlciB0ZXN0DQp0ZXN0IDwtIHJlYWQuY3N2KCJkYXRhc2V0L2Zhcm1zX3Rlc3QuY3N2IikNCg0KaGVhZCh0ZXN0KQ0KYGBgDQoNCmBgYHtyfQ0KIyBDaGFyZ2VyIHRyYWluDQp0cmFpbiA8LSByZWFkLmNzdigiZGF0YXNldC9mYXJtc190cmFpbi5jc3YiKQ0KDQpoZWFkKHRyYWluKQ0KYGBgDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogImRhdGFfY2hhbF9sb3VhdGlfZmlsZSINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCiMgREFUQSBDSEFMIExPVUFUSSBmaWxlJ3MNCg0KIyMgQWZmaWNoYWdlIGRlcyBkYXRhZnJhbWVzIGV0IHByaXNlIGRlIGNvbm5haXNzYW5jZSBzdXIgbGVzIGRvbm7DqWVzDQoNCmBgYHtyfQ0KIyBDaGFyZ2VyIGV4DQpleCA8LSByZWFkLmNzdigiZGF0YXNldC9leF9zb3VtaXNzaW9uLmNzdiIpDQoNCmhlYWQoZXgpDQpgYGANCg0KYGBge3J9DQojIENoYXJnZXIgdGVzdA0KdGVzdCA8LSByZWFkLmNzdigiZGF0YXNldC9mYXJtc190ZXN0LmNzdiIpDQoNCmhlYWQodGVzdCkNCmBgYA0KDQpgYGB7cn0NCiMgQ2hhcmdlciB0cmFpbg0KdHJhaW4gPC0gcmVhZC5jc3YoImRhdGFzZXQvZmFybXNfdHJhaW4uY3N2IikNCg0KaGVhZCh0cmFpbikNCmBgYA0KDQpgYGB7cn0NCiNub21icmUgZGUgY29sIGRhbnMgbGUgZGF0YXNldCB0cmFpbg0KbmNvbCh0cmFpbikNCmBgYA0KDQpgYGB7cn0NCiNub21icmUgZGUgY29sb25uZSBudW1lcmlxdWUgZGFucyBsZSBkYXRhc2V0IHRyYWluDQoNCnN1bShzYXBwbHkodHJhaW4sIGlzLm51bWVyaWMpKQ0KYGBgDQoNCiMjIEluc3RhbGF0aW9uIGRlcyBwYWNrYWdlIHBvdXIgbGUgU1ZNIGV0IGRhdGEgdmlzdQ0KDQpgYGB7cn0NCmxpYnJhcnkoZ2dwbG90MikNCmxpYnJhcnkoZTEwNzEpDQpgYGANCg==</div>
 
 
 
