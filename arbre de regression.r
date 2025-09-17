@@ -9,19 +9,18 @@ lapply(packages, library, character.only = TRUE)
 set.seed(42)  
 
 
-# etape1 Préparer les données
-# (on suppose que farms_train et farms_test sont déjà en mémoire)
+# etape1 Préparatio des données
 
 train_data <- farms_train
 test_data  <- farms_test
 
-# Corriger les niveaux de la variable cible
+# Correction ds niveaux de la variable cible
 # 1 = sain (positif), 0 = def (négatif)
 train_data$DIFF <- factor(train_data$DIFF,
                           levels = c(1, 0),
                           labels = c("sain", "def"))
 
-levels(train_data$DIFF)   # Vérification -> doit afficher: "sain" "def"
+levels(train_data$DIFF)   
 
 
 # Etape 2 — Vérifier NA + imputation simple
