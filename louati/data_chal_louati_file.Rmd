@@ -1,0 +1,138 @@
+---
+title: "data_chal_louati_file"
+output: html_notebook
+---
+
+# DATA CHAL LOUATI file's
+
+## Affichage des dataframes et prise de connaissance sur les données
+
+```{r}
+# Charger ex
+ex <- read.csv("dataset/ex_soumission.csv")
+
+head(ex)
+```
+
+```{r}
+# Charger test
+test <- read.csv("dataset/farms_test.csv")
+
+head(test)
+```
+
+```{r}
+# Charger train
+train <- read.csv("dataset/farms_train.csv")
+
+head(train)
+```
+
+```{r}
+#nombre de col dans le dataset train
+ncol(train)
+```
+
+```{r}
+#nombre de colonne numerique dans le dataset train
+
+sum(sapply(train, is.numeric))
+```
+
+```{r}
+#selection des variable quanti
+train_quanti <- train[ , -1]
+head(train_quanti)
+```
+
+```{r}
+plot(train_quanti)
+```
+
+## Instalation des packages
+
+```{r}
+library(ggplot2) # data visu (ne sera peut etre pas utile)
+library(e1071) # SVM
+library(FactoMineR) # PCA
+library(factoextra) # habillage PCA
+library(pROC) # pour le code généré par IA
+```
+
+## PCA
+
+```{r}
+# S'assurer que la colonne DIFF est bien qualitative
+train$DIFF <- as.factor(train$DIFF)
+pca_train <- PCA(
+  train,
+  quali.sup = 1
+)
+```
+
+```{r}
+plot(pca_train, habillage = "DIFF")
+```
+
+## Code généré par IA
+
+```{r}
+# -- 0) Préparer la cible et les features
+train$DIFF <- as.factor(train$DIFF)        # cible en factor (obligatoire en classification)
+
+# Colonnes numériques à utiliser (on exclut explicitement DIFF au cas où)
+num_cols_train <- names(train)[sapply(train, is.numeric)]
+num_cols_train <- setdiff(num_cols_train, "DIFF")
+
+# S'assurer que 'test' a les mêmes colonnes (même ordre)
+num_cols <- intersect(num_cols_train, names(test))
+Xtr <- as.data.frame(train[ , num_cols, drop = FALSE])
+Xte <- as.data.frame(test[  , num_cols, drop = FALSE])
+ytr <- train$DIFF
+
+# -- 1) Standardiser avec les paramètres du train
+Xtr_s <- scale(Xtr)  # calcule centre & écart-type sur le train
+Xte_s <- scale(
+  Xte,
+  center = attr(Xtr_s, "scaled:center"),
+  scale  = attr(Xtr_s, "scaled:scale")
+)
+Xtr_s <- as.data.frame(Xtr_s)
+Xte_s <- as.data.frame(Xte_s)
+
+# -- 2) Entraîner le SVM (linéaire par défaut)
+set.seed(42)
+mod <- svm(
+  x = Xtr_s, y = ytr,
+  type = "C-classification",   # classification
+  kernel = "linear",           # simple et efficace; mets "radial" pour RBF
+  cost = 1,                    # à ajuster si besoin
+  scale = FALSE,               # déjà standardisé
+  probability = TRUE           # pour sortir des probabilités
+)
+
+# -- 3) Prédictions sur le JEU DE TEST
+pred_test <- predict(mod, newdata = Xte_s, probability = TRUE)     # classes
+proba_test <- attr(pred_test, "probabilities")                     # matrice de proba
+
+# -- 4) Résultat final (adapter la colonne id si tu en as une dans test)
+res <- data.frame(
+  id = if ("id" %in% names(test)) test$id else seq_len(nrow(test)),
+  DIFF_pred = as.character(pred_test)
+  # Optionnel : coller aussi les proba si tu veux
+  # , proba_test
+)
+
+# Sauvegarde éventuelle
+# write.csv(res, "svm_predictions_test.csv", row.names = FALSE)
+
+# Aperçu
+head(res)
+```
+
+## Exportation des resultats sous csv
+
+```{r}
+write.csv(res, file = file.path("out_dir", "soumission_svm.csv"),
+          row.names = FALSE, fileEncoding = "UTF-8")
+```
