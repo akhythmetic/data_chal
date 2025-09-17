@@ -133,6 +133,6 @@ head(res)
 ## Exportation des resultats sous csv
 
 ```{r}
-write.csv(res, file = file.path(out_dir, "soumission_svm.csv"),
+write.csv(res, file = file.path("out_dir", "soumission_svm.csv"),
           row.names = FALSE, fileEncoding = "UTF-8")
 ```
